@@ -3,14 +3,7 @@
 
 /* VARIABLES CSS */
 :root {
-    --header-height: 3rem;
-
-    /* Colors */
-    /* Change favorite color */
-    --hue-color: 230;
-    /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
-
-    /* HSL color mode */
+    /* RGBA color mode */
     --first-color: rgba(112, 130, 225, 1);
     --text-color: rgba(43, 43, 43, 1);
     --text-color-light: rgba(255, 255, 255, 1);
@@ -34,31 +27,34 @@
     --font-medium: 500;
     --font-semi-bold: 600;
 
-    /* Margenes Bottom */
+    /* Margin */
     /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
-    --mb-0-25: 0.25rem;
-    --mb-0-5: 0.5rem;
-    --mb-0-75: 0.75rem;
-    --mb-1: 1rem;
-    --mb-1-5: 1.5rem;
-    --mb-2: 2rem;
-    --mb-2-5: 2.5rem;
-    --mb-3: 3rem;
-
-    /* z index */
-    --z-tooltip: 10;
-    --z-fixed: 100;
-    --z-modal: 1000;
+    --m-0-25: 0.25rem;
+    --m-0-5: 0.5rem;
+    --m-0-75: 0.75rem;
+    --m-1: 1rem;
+    --m-1-5: 1.5rem;
+    --m-2: 2rem;
+    --m-2-5: 2.5rem;
+    --m-3: 3rem;
 }
 
-/* global */
+/* Global */
 body {
     font-size: var(--normal-font-size);
     font-family: var(--body-font);
     color: var(--text-color);
 }
 
-/* flex */
+.num {
+    font-family: var(--header-font);
+}
+
+.num-unit {
+    margin: 0 auto;
+}
+
+/* Flex */
 .fx-col {
     display: flex;
     flex-direction: column;
@@ -67,6 +63,17 @@ body {
 .fx-row {
     display: flex;
     flex-direction: row;
+}
+
+/* Container(s) */
+.c-today {
+    background-color: var(--container-color);
+    border-radius: 0.5rem;
+    padding: 1rem 1rem 2rem 1rem;
+}
+
+.c-temp {
+    justify-content: space-around;
 }
 
 /* Search Bar */
@@ -85,14 +92,7 @@ body {
     margin-top: 1rem;
 }
 
-/* Today & Today's Details */
-.c-today {
-    background-color: var(--container-color);
-    border-radius: 0.5rem;
-    padding: 1rem 1rem 2rem 1rem;
-}
-
-
+/* Today Container */
 .header {
     justify-content: space-between;
     margin: 0 auto;
@@ -104,7 +104,7 @@ body {
 }
 
 .location p {
-    margin-left: var(--mb-0-5);
+    margin-left: var(--m-0-5);
     margin-top: 0rem;
     font-family: var(--header-font);
     font-size: var(--h3-font-size);
@@ -121,13 +121,26 @@ body {
     text-align: right;
 }
 
-.today-info .today-date {
+.today-info .date {
     font-family: var(--subheader-font);
     font-size: var(--smaller-font-size);
-    margin-top: var(--mb-0-5);
+    margin-top: var(--m-0-5);
     text-align: right;
 }
 
+.current-temp .num {
+    font-size: 5rem;
+    margin-bottom: 0;
+    margin: -0.25rem 0 0 var(--m-1);
+}
+
+.current-temp .text {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: var(--subheader-font);
+}
+
+/* Today's Details Container */
 .today-details {
     background-color: var(--first-color);
     border-radius: 1rem;
@@ -136,23 +149,9 @@ body {
     filter: drop-shadow(0rem .2rem .2rem rgba(57, 57, 57, .4))
 }
 
-.num-unit {
-    margin: 0 auto;
-}
-
-.num {
-    font-family: var(--header-font);
-}
-
 .today-details .num {
     font-size: var(--h2-font-size);
-    margin: var(--mb-0-25) var(--mb-0-25) var(--mb-0-75) var(--mb-1);
-}
-
-.current-temp .num {
-    font-size: 5rem;
-    margin-bottom: 0;
-    margin: -0.25rem 0 0 var(--mb-1);
+    margin: var(--m-0-25) var(--m-0-25) var(--m-0-75) var(--m-1);
 }
 
 .l-temp,
@@ -171,15 +170,58 @@ body {
     font-size: var(--h4-font-size);
 }
 
-.current-temp .text {
-    text-align: center;
-    margin-bottom: 2rem;
-    font-family: var(--subheader-font);
+.wind .num {
+    margin-left: var(--m-2);
 }
 
-.wind .num {
-    margin-left: var(--mb-2);
+
+/* Future Container */
+
+/* Future Details Container */
+.future-details {
+    background-color: var(--container-color);
+    border-radius: 1rem;
+    height: 23rem;
 }
+
+.future-details .num-unit {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.future-details .num {
+    font-size: 3rem;
+    margin: var(--m-0-25) var(--m-0-25) var(--m-0-75) var(--m-1);
+}
+
+.future-forecast p {
+    text-align: center;
+    font-family: var(--subheader-font);
+    font-size: var(--small-font-size);
+}
+
+.future-info {
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
+.future-info p {
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+}
+
+.future-info .day {
+    font-family: var(--header-font);
+    font-size: var(--h3-font-size);
+}
+
+.future-info .date {
+    margin-top: 0.4rem;
+    font-family: var(--subheader-font);
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-semi-bold);
+}
+
 
 @media screen and (min-width: 900px) {
 

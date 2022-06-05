@@ -10,7 +10,7 @@ const App: FC = () => {
   return (
     <div className='fx-col'>
       <Search />
-      <div className='fx-row'>
+      <div className='c-temp fx-row'>
         <Today />
         <Future />
       </div>

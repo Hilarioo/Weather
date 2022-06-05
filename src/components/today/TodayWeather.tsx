@@ -19,7 +19,7 @@ const TodayWeather = () => {
         </div>
         <div className='today-info fx-col'>
           <p className='day'>Saturday</p>
-          <p className='today-date'>June 5, 2022</p>
+          <p className='date'>June 5, 2022</p>
         </div>
       </div>
 
