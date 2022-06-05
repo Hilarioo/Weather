@@ -1,7 +1,45 @@
 import React from "react";
 
 const TodayDetails = () => {
-  return <div>TodayDetails</div>;
+  return (
+    <div className='today-details fx-row'>
+      {/* Low Temp */}
+      <div className='l-temp fx-col'>
+        <div className='num-unit fx-row'>
+          <p className='num'>75</p>
+          <span className='unit'>C</span>
+        </div>
+        <span className='text'>Low</span>
+      </div>
+
+      {/* High Temp */}
+      <div className='h-temp fx-col'>
+        <div className='num-unit fx-row'>
+          <p className='num'>105</p>
+          <span className='unit'>C</span>
+        </div>
+        <span className='text'>High</span>
+      </div>
+
+      {/* Humidity */}
+      <div className='humidity fx-col'>
+        <div className='num-unit fx-row'>
+          <p className='num'>15</p>
+          <span className='unit'>%</span>
+        </div>
+        <span className='text'>Humidity</span>
+      </div>
+
+      {/* Wind Speed */}
+      <div className='wind fx-col'>
+        <div className='num-unit fx-row'>
+          <p className='num'>15</p>
+          <span className='unit'>mph</span>
+        </div>
+        <span className='text'>Wind Speed</span>
+      </div>
+    </div>
+  );
 };
 
 export default TodayDetails;
