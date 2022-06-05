@@ -1,11 +1,11 @@
-/*==================== GOOGLE FONTS ====================*/
+/* GOOGLE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Montserrat:wght@400;600&family=Roboto:wght@300;400;500;700&display=swap');
 
-/*==================== VARIABLES CSS ====================*/
+/* VARIABLES CSS */
 :root {
     --header-height: 3rem;
 
-    /*========== Colors ==========*/
+    /* Colors */
     /* Change favorite color */
     --hue-color: 230;
     /*Purple 250 - Green 142 - Blue 230 - Pink 340*/
@@ -16,7 +16,7 @@
     --text-color-light: rgba(255, 255, 255, 1);
     --container-color: rgba(249, 249, 249, 1);
 
-    /*========== Font and typography ==========*/
+    /* Font and typography */
     --body-font: 'Roboto', sans-serif;
     --header-font: 'Concert One', cursive;
     --subheader-font: 'Montserrat', sans-serif;
@@ -30,11 +30,11 @@
     --small-font-size: 0.813rem;
     --smaller-font-size: 0.75rem;
 
-    /*========== Font weight ==========*/
+    /* Font weight */
     --font-medium: 500;
     --font-semi-bold: 600;
 
-    /*========== Margenes Bottom ==========*/
+    /* Margenes Bottom */
     /* .25rem = 4px, .5rem = 8px, .75rem = 12px ... */
     --mb-0-25: 0.25rem;
     --mb-0-5: 0.5rem;
@@ -45,7 +45,7 @@
     --mb-2-5: 2.5rem;
     --mb-3: 3rem;
 
-    /*========== z index ==========*/
+    /* z index */
     --z-tooltip: 10;
     --z-fixed: 100;
     --z-modal: 1000;
@@ -92,10 +92,40 @@ body {
     padding: 1rem 1rem 2rem 1rem;
 }
 
+
 .header {
     justify-content: space-between;
     margin: 0 auto;
     max-width: 95%;
+}
+
+.location {
+    margin-top: 1rem;
+}
+
+.location p {
+    margin-left: var(--mb-0-5);
+    margin-top: 0rem;
+    font-family: var(--header-font);
+    font-size: var(--h3-font-size);
+}
+
+.today-info {
+    align-items: right;
+}
+
+.today-info .day {
+    font-family: var(--header-font);
+    font-size: var(--h3-font-size);
+    margin-bottom: 0rem;
+    text-align: right;
+}
+
+.today-info .today-date {
+    font-family: var(--subheader-font);
+    font-size: var(--smaller-font-size);
+    margin-top: var(--mb-0-5);
+    text-align: right;
 }
 
 .today-details {
@@ -144,6 +174,7 @@ body {
 .current-temp .text {
     text-align: center;
     margin-bottom: 2rem;
+    font-family: var(--subheader-font);
 }
 
 .wind .num {

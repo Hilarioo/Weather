@@ -1,5 +1,9 @@
 import React from "react";
 
+// Icons
+import { TbTemperatureCelsius } from "react-icons/tb";
+import { TbTemperatureFahrenheit } from "react-icons/tb";
+
 const TodayDetails = () => {
   return (
     <div className='today-details fx-row'>
@@ -7,7 +11,9 @@ const TodayDetails = () => {
       <div className='l-temp fx-col'>
         <div className='num-unit fx-row'>
           <p className='num'>75</p>
-          <span className='unit'>C</span>
+          <span className='unit'>
+            <TbTemperatureCelsius />
+          </span>
         </div>
         <span className='text'>Low</span>
       </div>
@@ -16,7 +22,9 @@ const TodayDetails = () => {
       <div className='h-temp fx-col'>
         <div className='num-unit fx-row'>
           <p className='num'>105</p>
-          <span className='unit'>C</span>
+          <span className='unit'>
+            <TbTemperatureCelsius />
+          </span>
         </div>
         <span className='text'>High</span>
       </div>

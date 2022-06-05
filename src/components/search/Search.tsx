@@ -5,7 +5,9 @@ import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import SearchIcon from "@mui/icons-material/Search";
+
+// Icons
+import { BiSearchAlt } from "react-icons/bi";
 
 // Select
 import TextField from "@mui/material/TextField";
@@ -67,7 +69,7 @@ const Search = () => {
           inputProps={{ "aria-label": "search for a city..." }}
         />
         <IconButton type='submit' sx={{ p: "10px" }} aria-label='search'>
-          <SearchIcon />
+          <BiSearchAlt />
         </IconButton>
       </Paper>
 
