@@ -3,7 +3,10 @@ import FutureDate from "./FutureDate";
 
 const FutureWeather = () => {
   return (
-    <div>
+    <div className='c-future fx-row'>
+      <FutureDate />
+      <FutureDate />
+      <FutureDate />
       <FutureDate />
     </div>
   );

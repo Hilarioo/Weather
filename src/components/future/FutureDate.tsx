@@ -2,7 +2,7 @@ import React from "react";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
-import { ReactComponent as Sun } from "../../svg/sun.svg";
+import { ReactComponent as Sun } from "../../svg/Sun.svg";
 
 const FutureDate = () => {
   return (
