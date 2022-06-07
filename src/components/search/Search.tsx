@@ -54,7 +54,8 @@ const Search: FC<Props> = ({ setLocation }) => {
     setSpeed(event.target.value);
   };
 
-  const handleLocation = () => {
+  const handleLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+    event.preventDefault(); // prevent refresh
     setLocation(input);
     setInput("");
   };
@@ -63,6 +64,8 @@ const Search: FC<Props> = ({ setLocation }) => {
     <div className='search'>
       {/* Search Bar */}
       <Paper
+        component='form'
+        onSubmit={(e: any) => handleLocation(e)}
         sx={{
           m: 1,
           p: "2px 4px",
@@ -78,10 +81,7 @@ const Search: FC<Props> = ({ setLocation }) => {
           inputProps={{ "aria-label": "search for a city..." }}
           onChange={(e) => setInput(e.target.value)}
         />
-        <IconButton
-          sx={{ p: "10px" }}
-          aria-label='search'
-          onClick={handleLocation}>
+        <IconButton sx={{ p: "10px" }} aria-label='search' type='submit'>
           <BiSearchAlt />
         </IconButton>
       </Paper>
