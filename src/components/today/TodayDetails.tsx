@@ -4,6 +4,13 @@ import React from "react";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 
+type Props = {
+  lowTemp: number;
+  highTemp: number;
+  humidity: number;
+  windSpeed: number;
+};
+
 const TodayDetails = () => {
   return (
     <div className='today-details fx-row'>

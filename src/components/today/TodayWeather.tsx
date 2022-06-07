@@ -8,6 +8,18 @@ import { GrLocation } from "react-icons/gr";
 // child components
 import MoreDetails from "./TodayDetails";
 
+type Props = {
+  location: string;
+  day: string;
+  condition: string;
+  date: string;
+  temp: number;
+  lowTemp: number;
+  highTemp: number;
+  humidity: number;
+  windSpeed: number;
+};
+
 const TodayWeather = () => {
   return (
     <div className='c-today'>

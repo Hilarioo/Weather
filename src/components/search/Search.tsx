@@ -1,17 +1,15 @@
-import React, { useState } from "react";
-
+import React, { FC, useState } from "react";
 // Search Bar
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-
 // Icons
 import { BiSearchAlt } from "react-icons/bi";
-
 // Select
 import TextField from "@mui/material/TextField";
 
+// Drop-down selection for temperatures
 const temperatures = [
   {
     value: "celsius",
@@ -26,7 +24,7 @@ const temperatures = [
     label: "Kelvin (K)",
   },
 ];
-
+// Drop-down selection for wind speed
 const speeds = [
   {
     value: "mph",
@@ -38,9 +36,15 @@ const speeds = [
   },
 ];
 
-const Search = () => {
+// Typechecking the props for the component
+type Props = {
+  setLocation: (val: string) => void;
+};
+
+const Search: FC<Props> = ({ setLocation }) => {
   const [temp, setTemp] = useState("fahrenheit");
   const [speed, setSpeed] = useState("mph");
+  const [input, setInput] = useState("");
 
   const handleTemp = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTemp(event.target.value);
@@ -50,11 +54,14 @@ const Search = () => {
     setSpeed(event.target.value);
   };
 
+  const handleLocation = () => {
+    setLocation(input);
+  };
+
   return (
     <div className='search'>
       {/* Search Bar */}
       <Paper
-        component='form'
         sx={{
           m: 1,
           p: "2px 4px",
@@ -67,8 +74,12 @@ const Search = () => {
           sx={{ ml: 1, flex: 1 }}
           placeholder='Search for a city...'
           inputProps={{ "aria-label": "search for a city..." }}
+          onChange={(e) => setInput(e.target.value)}
         />
-        <IconButton type='submit' sx={{ p: "10px" }} aria-label='search'>
+        <IconButton
+          sx={{ p: "10px" }}
+          aria-label='search'
+          onClick={handleLocation}>
           <BiSearchAlt />
         </IconButton>
       </Paper>
