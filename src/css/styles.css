@@ -70,7 +70,7 @@ body {
     background-color: var(--container-color);
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
-    width: 25rem;
+    width: 28rem;
     margin: 0 auto;
 }
 
@@ -79,7 +79,6 @@ body {
 }
 
 .c-future {
-    max-width: 48rem;
     margin: 2rem auto;
     flex-wrap: wrap;
     align-items: center;
@@ -268,14 +267,27 @@ body {
         margin: 0 auto
     }
 
+    .c-today {
+        margin-right: 3rem;
+    }
+
     .c-future {
         flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
         overflow-y: scroll;
         margin: 0;
+        max-width: 25rem;
     }
 
     .future-details {
         margin: 0 .5rem;
     }
 
+}
+
+@media screen and (min-width: 1200px) {
+    .c-future {
+        max-width: 50rem;
+    }
 }
