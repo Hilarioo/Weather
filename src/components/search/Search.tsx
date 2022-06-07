@@ -12,16 +12,12 @@ import TextField from "@mui/material/TextField";
 // Drop-down selection for temperatures
 const temperatures = [
   {
-    value: "celsius",
+    value: "c",
     label: "Celsius (C)",
   },
   {
-    value: "fahrenheit",
+    value: "f",
     label: "Fahrenheit (F)",
-  },
-  {
-    value: "kelvin",
-    label: "Kelvin (K)",
   },
 ];
 // Drop-down selection for wind speed
@@ -31,7 +27,7 @@ const speeds = [
     label: "Miles (mph)",
   },
   {
-    value: "km/h",
+    value: "k",
     label: "Kilometers (km/h)",
   },
 ];

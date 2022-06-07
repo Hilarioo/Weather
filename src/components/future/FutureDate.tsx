@@ -5,6 +5,9 @@ import { format } from "fecha";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 import { ReactComponent as Sun } from "../../svg/Sun.svg";
+import { ReactComponent as RainStorm } from "../../svg/RainStorm.svg";
+import { ReactComponent as SunRain } from "../../svg/SunRain.svg";
+import { ReactComponent as SunClouds } from "../../svg/SunClouds.svg";
 // Interfaces
 import { ForecastDay } from "../../api/interfaces";
 
@@ -14,6 +17,22 @@ type Props = {
 };
 
 const FutureDate: FC<Props> = ({ forecastday }) => {
+  const cloud = ["cloudy", "overcast", "mist", "fog"];
+  const rain = ["rain", "snow", "sleet", "drizzle", "ice"];
+  const storm = ["thunder", "blizzard"];
+
+  const weatherImage = (): JSX.Element => {
+    if (storm.some((word) => forecastday.day.condition.text.includes(word)))
+      return <RainStorm height={85} />;
+    else if (rain.some((word) => forecastday.day.condition.text.includes(word)))
+      return <SunRain height={85} />;
+    else if (
+      cloud.some((word) => forecastday.day.condition.text.includes(word))
+    )
+      return <SunClouds height={85} />;
+    else return <Sun height={85} />;
+  };
+
   return (
     <div className='future-details fx-col'>
       {/* Temp */}
@@ -26,7 +45,8 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
 
       {/* Svg and forecast */}
       <div className='future-forecast fx-col'>
-        <Sun height={85} />
+        {weatherImage()}
+        {/* <Sun height={85} /> */}
         <p>{forecastday.day.condition.text}</p>
       </div>
 
