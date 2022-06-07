@@ -1,25 +1,25 @@
-import React from "react";
-
+import React, { FC } from "react";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
+// Interfaces
+import { CurrentWeather, Forecast } from "../../api/interfaces";
 
+// Typechecking to make sure the data being received is valid
 type Props = {
-  lowTemp: number;
-  highTemp: number;
-  humidity: number;
-  windSpeed: number;
+  current: CurrentWeather;
+  forecast: Forecast;
 };
 
-const TodayDetails = () => {
+const TodayDetails: FC<Props> = ({ current, forecast }) => {
   return (
     <div className='today-details fx-row'>
       {/* Low Temp */}
       <div className='l-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>75</p>
+          <p className='num'>{forecast.forecastday[0].day.mintemp_f}</p>
           <span className='unit'>
-            <TbTemperatureCelsius />
+            <TbTemperatureFahrenheit />
           </span>
         </div>
         <span className='text'>Low</span>
@@ -28,9 +28,9 @@ const TodayDetails = () => {
       {/* High Temp */}
       <div className='h-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>105</p>
+          <p className='num'>{forecast.forecastday[0].day.maxtemp_f}</p>
           <span className='unit'>
-            <TbTemperatureCelsius />
+            <TbTemperatureFahrenheit />
           </span>
         </div>
         <span className='text'>High</span>
@@ -39,7 +39,7 @@ const TodayDetails = () => {
       {/* Humidity */}
       <div className='humidity fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>15</p>
+          <p className='num'>{current.humidity}</p>
           <span className='unit'>%</span>
         </div>
         <span className='text'>Humidity</span>
@@ -48,7 +48,7 @@ const TodayDetails = () => {
       {/* Wind Speed */}
       <div className='wind fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>15</p>
+          <p className='num'>{current.wind_mph}</p>
           <span className='unit'>mph</span>
         </div>
         <span className='text'>Wind Speed</span>

@@ -1,20 +1,22 @@
-import React from "react";
+import React, { FC } from "react";
 import FutureDate from "./FutureDate";
+// Interfaces
+import { Weather } from "../../api/interfaces";
 
+// Typechecking to make sure the data being received is valid
 type Props = {
-  futureDays: Array<string>;
-  futureConditions: Array<string>;
-  futureDates: Array<string>;
-  futureTemp: Array<number>;
+  weather: Weather;
 };
 
-const FutureWeather = () => {
+const FutureWeather: FC<Props> = ({ weather }) => {
   return (
     <div className='c-future fx-row'>
-      <FutureDate />
-      <FutureDate />
-      <FutureDate />
-      <FutureDate />
+      {/* Doesnt show the same day again */}
+      {weather.forecast.forecastday.map((forecastday, index) =>
+        index !== 0 ? (
+          <FutureDate key={index} forecastday={forecastday} />
+        ) : null
+      )}
     </div>
   );
 };

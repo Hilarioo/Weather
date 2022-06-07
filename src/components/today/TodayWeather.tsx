@@ -1,53 +1,52 @@
-import React from "react";
-
+import React, { FC } from "react";
+// Format Date
+import { format } from "fecha";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 import { GrLocation } from "react-icons/gr";
-
-// child components
+// Interfaces
+import { Weather } from "../../api/interfaces";
+// Child components
 import MoreDetails from "./TodayDetails";
 
+// Typechecking to make sure the data being received is valid
 type Props = {
-  location: string;
-  day: string;
-  condition: string;
-  date: string;
-  temp: number;
-  lowTemp: number;
-  highTemp: number;
-  humidity: number;
-  windSpeed: number;
+  weather: Weather;
 };
 
-const TodayWeather = () => {
+const TodayWeather: FC<Props> = ({ weather }) => {
   return (
     <div className='c-today'>
       {/* Heading showcasing location name and date */}
       <div className='header fx-row'>
         <div className='location fx-row'>
           <GrLocation size={22} />
-          <p>San Francisco</p>
+          <p>{weather.location.name}</p>
         </div>
         <div className='today-info fx-col'>
-          <p className='day'>Saturday</p>
-          <p className='date'>June 5, 2022</p>
+          <p className='day'>
+            {format(new Date(weather.location.localtime), "dddd")}
+          </p>
+          <p className='date'>
+            {format(new Date(weather.location.localtime), "MMMM Do, YYYY")}
+          </p>
         </div>
       </div>
 
       {/* Current temp and forecast */}
       <div className='current-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>105</p>
+          <p className='num'>{weather.current.temp_f}</p>
           <span className='unit'>
-            <TbTemperatureCelsius size={22} />
+            <TbTemperatureFahrenheit size={22} />
           </span>
         </div>
-        <span className='text'>Partly Cloudy</span>
+        <span className='text'>{weather.current.condition.text}</span>
       </div>
 
       {/* Child component showing low temp, high temp, humidity, and wind speed */}
-      <MoreDetails />
+      <MoreDetails current={weather.current} forecast={weather.forecast} />
     </div>
   );
 };

@@ -1,16 +1,16 @@
 import React, { FC, useState, useEffect } from "react";
-
-// api helpers
+// API helpers
 import axios from "./api/axios";
 import requests from "./api/requests";
-
+// Interfaces
+import { Weather } from "./api/interfaces";
 // Import components
 import Search from "./components/search/Search";
 import Today from "./components/today/TodayWeather";
 import Future from "./components/future/FutureWeather";
 
 const App: FC = () => {
-  const [weather, setWeather] = useState();
+  const [weather, setWeather] = useState<Weather>();
   const [location, setLocation] = useState("San Francisco");
 
   // init
@@ -29,10 +29,13 @@ const App: FC = () => {
 
     const fetchWeather = async () => {
       try {
-        const req = await axios.get(
-          `${requests.fetchForecast}&q=${location}&days=${5}&aqi=no&alerts=no`
-        );
-        console.log(req.data);
+        await axios
+          .get(
+            `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
+          )
+          .then((res) => {
+            setWeather(res.data);
+          });
       } catch (err) {
         console.log(err);
       }
@@ -40,12 +43,23 @@ const App: FC = () => {
     fetchWeather();
   }, [location]);
 
+  console.log(weather);
+
   return (
     <div className='fx-col'>
       <Search setLocation={setLocation} />
       <div className='c-temp'>
-        <Today />
-        <Future />
+        {weather === undefined ? (
+          "loading current weather...."
+        ) : (
+          <Today weather={weather} />
+        )}
+
+        {weather === undefined ? (
+          "loading furutre weather...."
+        ) : (
+          <Future weather={weather} />
+        )}
       </div>
     </div>
   );
