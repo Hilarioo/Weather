@@ -8,6 +8,8 @@ import { Weather } from "./api/interfaces";
 import Search from "./components/search/Search";
 import Today from "./components/today/TodayWeather";
 import Future from "./components/future/FutureWeather";
+// Materiaul UI
+import CircularProgress from "@mui/material/CircularProgress";
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
@@ -65,13 +67,13 @@ const App: FC = () => {
       />
       <div className='c-temp'>
         {weather === undefined ? (
-          "loading current weather...."
+          <CircularProgress />
         ) : (
           <Today weather={weather} speed={speed} temp={temp} />
         )}
 
         {weather === undefined ? (
-          "loading furutre weather...."
+          <CircularProgress />
         ) : (
           <Future weather={weather} temp={temp} />
         )}
