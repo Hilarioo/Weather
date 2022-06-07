@@ -1,9 +1,11 @@
 
-const API_KEY = "572896d89ecb4b55ad893804220406";
+// const API_KEY = "dacc51e700c24457a8c132500220706";
+
+import * as dotenv from "dotenv";
 
 const requests = {
-    fetchCurrentWeather: `current.json?key=${API_KEY}`, 
-    fetchForecast: `forecast.json?key=${API_KEY}`,
+    fetchCurrentWeather: `current.json?key=${process.env.REACT_APP_API_KEY}`, 
+    fetchForecast: `forecast.json?key=${process.env.REACT_APP_API_KEY}`,
     fetchUserIP: 'https://geolocation-db.com/json/'
 }
 
