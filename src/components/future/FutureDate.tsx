@@ -31,9 +31,14 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
       </div>
 
       <div className='future-info'>
-        <p className='day'>{format(new Date(forecastday.date), "dddd")}</p>
+        <p className='day'>
+          {format(new Date(forecastday.date.replace(/-/g, "/")), "dddd")}
+        </p>
         <p className='date'>
-          {format(new Date(forecastday.date), "MMMM Do, YYYY")}
+          {format(
+            new Date(forecastday.date.replace(/-/g, "/")),
+            "MMMM Do, YYYY"
+          )}
         </p>
       </div>
     </div>

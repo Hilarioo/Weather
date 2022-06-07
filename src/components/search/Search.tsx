@@ -56,6 +56,7 @@ const Search: FC<Props> = ({ setLocation }) => {
 
   const handleLocation = () => {
     setLocation(input);
+    setInput("");
   };
 
   return (
@@ -72,7 +73,8 @@ const Search: FC<Props> = ({ setLocation }) => {
         }}>
         <InputBase
           sx={{ ml: 1, flex: 1 }}
-          placeholder='Search for a city...'
+          placeholder={"Search for a city..."}
+          value={input}
           inputProps={{ "aria-label": "search for a city..." }}
           onChange={(e) => setInput(e.target.value)}
         />
