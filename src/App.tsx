@@ -11,6 +11,8 @@ import Future from "./components/future/FutureWeather";
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
+  const [temp, setTemp] = useState("f");
+  const [speed, setSpeed] = useState("mph");
   const [location, setLocation] = useState("San Francisco");
 
   // init
@@ -31,6 +33,7 @@ const App: FC = () => {
       try {
         await axios
           .get(
+            // Free Tier only allows 3-days MAX so thats why its hardcoded
             `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
           )
           .then((res) => {
@@ -47,18 +50,24 @@ const App: FC = () => {
 
   return (
     <div className='fx-col'>
-      <Search setLocation={setLocation} />
+      <Search
+        speed={speed}
+        setSpeed={setSpeed}
+        temp={temp}
+        setTemp={setTemp}
+        setLocation={setLocation}
+      />
       <div className='c-temp'>
         {weather === undefined ? (
           "loading current weather...."
         ) : (
-          <Today weather={weather} />
+          <Today weather={weather} speed={speed} temp={temp} />
         )}
 
         {weather === undefined ? (
           "loading furutre weather...."
         ) : (
-          <Future weather={weather} />
+          <Future weather={weather} temp={temp} />
         )}
       </div>
     </div>

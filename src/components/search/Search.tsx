@@ -34,12 +34,14 @@ const speeds = [
 
 // Typechecking the props for the component
 type Props = {
+  speed: string;
+  setSpeed: (value: string) => void;
+  temp: string;
+  setTemp: (value: string) => void;
   setLocation: (val: string) => void;
 };
 
-const Search: FC<Props> = ({ setLocation }) => {
-  const [temp, setTemp] = useState("fahrenheit");
-  const [speed, setSpeed] = useState("mph");
+const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
   const [input, setInput] = useState("");
 
   const handleTemp = (event: React.ChangeEvent<HTMLInputElement>) => {

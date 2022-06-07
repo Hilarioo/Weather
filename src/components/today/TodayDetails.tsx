@@ -9,17 +9,27 @@ import { CurrentWeather, Forecast } from "../../api/interfaces";
 type Props = {
   current: CurrentWeather;
   forecast: Forecast;
+  speed: string;
+  temp: string;
 };
 
-const TodayDetails: FC<Props> = ({ current, forecast }) => {
+const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
   return (
     <div className='today-details fx-row'>
       {/* Low Temp */}
       <div className='l-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>{forecast.forecastday[0].day.mintemp_f}</p>
+          <p className='num'>
+            {temp === "f"
+              ? forecast.forecastday[0].day.mintemp_f
+              : forecast.forecastday[0].day.mintemp_c}
+          </p>
           <span className='unit'>
-            <TbTemperatureFahrenheit />
+            {temp === "f" ? (
+              <TbTemperatureFahrenheit />
+            ) : (
+              <TbTemperatureCelsius />
+            )}
           </span>
         </div>
         <span className='text'>Low</span>
@@ -28,9 +38,17 @@ const TodayDetails: FC<Props> = ({ current, forecast }) => {
       {/* High Temp */}
       <div className='h-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>{forecast.forecastday[0].day.maxtemp_f}</p>
+          <p className='num'>
+            {temp === "f"
+              ? forecast.forecastday[0].day.maxtemp_f
+              : forecast.forecastday[0].day.maxtemp_c}
+          </p>
           <span className='unit'>
-            <TbTemperatureFahrenheit />
+            {temp === "f" ? (
+              <TbTemperatureFahrenheit />
+            ) : (
+              <TbTemperatureCelsius />
+            )}
           </span>
         </div>
         <span className='text'>High</span>
@@ -48,8 +66,10 @@ const TodayDetails: FC<Props> = ({ current, forecast }) => {
       {/* Wind Speed */}
       <div className='wind fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>{current.wind_mph}</p>
-          <span className='unit'>mph</span>
+          <p className='num'>
+            {speed === "mph" ? current.wind_mph : current.wind_kph}
+          </p>
+          <span className='unit'>{speed === "mph" ? "mph" : "km/h"}</span>
         </div>
         <span className='text'>Wind Speed</span>
       </div>

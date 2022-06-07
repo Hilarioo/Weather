@@ -12,10 +12,12 @@ import MoreDetails from "./TodayDetails";
 
 // Typechecking to make sure the data being received is valid
 type Props = {
+  speed: string;
+  temp: string;
   weather: Weather;
 };
 
-const TodayWeather: FC<Props> = ({ weather }) => {
+const TodayWeather: FC<Props> = ({ speed, temp, weather }) => {
   return (
     <div className='c-today'>
       {/* Heading showcasing location name and date */}
@@ -37,16 +39,27 @@ const TodayWeather: FC<Props> = ({ weather }) => {
       {/* Current temp and forecast */}
       <div className='current-temp fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>{weather.current.temp_f}</p>
+          <p className='num'>
+            {temp === "f" ? weather.current.temp_f : weather.current.temp_c}
+          </p>
           <span className='unit'>
-            <TbTemperatureFahrenheit size={22} />
+            {temp === "f" ? (
+              <TbTemperatureFahrenheit size={22} />
+            ) : (
+              <TbTemperatureCelsius size={22} />
+            )}
           </span>
         </div>
         <span className='text'>{weather.current.condition.text}</span>
       </div>
 
       {/* Child component showing low temp, high temp, humidity, and wind speed */}
-      <MoreDetails current={weather.current} forecast={weather.forecast} />
+      <MoreDetails
+        current={weather.current}
+        forecast={weather.forecast}
+        speed={speed}
+        temp={temp}
+      />
     </div>
   );
 };

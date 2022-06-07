@@ -14,9 +14,10 @@ import { ForecastDay } from "../../api/interfaces";
 // Typechecking to make sure the data being received is valid
 type Props = {
   forecastday: ForecastDay;
+  temp: string;
 };
 
-const FutureDate: FC<Props> = ({ forecastday }) => {
+const FutureDate: FC<Props> = ({ forecastday, temp }) => {
   const cloud = ["cloudy", "overcast", "mist", "fog"];
   const rain = ["rain", "snow", "sleet", "drizzle", "ice"];
   const storm = ["thunder", "blizzard"];
@@ -37,9 +38,15 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
     <div className='future-details fx-col'>
       {/* Temp */}
       <div className='num-unit fx-row'>
-        <p className='num'>{forecastday.day.maxtemp_f}</p>
+        <p className='num'>
+          {temp === "f" ? forecastday.day.maxtemp_f : forecastday.day.maxtemp_c}
+        </p>
         <span className='unit'>
-          <TbTemperatureFahrenheit size={15} />
+          {temp === "f" ? (
+            <TbTemperatureFahrenheit size={15} />
+          ) : (
+            <TbTemperatureCelsius size={15} />
+          )}
         </span>
       </div>
 
