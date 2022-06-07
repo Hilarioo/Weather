@@ -11,42 +11,48 @@ import Future from "./components/future/FutureWeather";
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
-  const [temp, setTemp] = useState("f");
-  const [speed, setSpeed] = useState("mph");
-  const [location, setLocation] = useState("San Francisco");
+  const [temp, setTemp] = useState<string>("f");
+  const [speed, setSpeed] = useState<string>("mph");
+  const [location, setLocation] = useState<string>();
+
+  // Fetch user's IP address
+  const fetchIP = async () => {
+    try {
+      // get data from geolocation API
+      await axios.get(requests.fetchUserIP).then((res) => {
+        setLocation(res.data.IPv4);
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // Fetch new weather info
+  const fetchWeather = async () => {
+    try {
+      await axios
+        .get(
+          // Free Tier only allows 3-days MAX so thats why its hardcoded
+          `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
+        )
+        .then((res) => {
+          setWeather(res.data);
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   // init
   useEffect(() => {
-    // const fetchIP = async () => {
-    //   try {
-    //     // get data from geolocation API
-    //     const req = await axios.get(requests.fetchUserIP).then((res) => {
-    //       console.log(res.data.IPv4);
-    //     });
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchIP();
+    fetchIP();
+    fetchWeather();
+  }, []);
 
-    const fetchWeather = async () => {
-      try {
-        await axios
-          .get(
-            // Free Tier only allows 3-days MAX so thats why its hardcoded
-            `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
-          )
-          .then((res) => {
-            setWeather(res.data);
-          });
-      } catch (err) {
-        console.log(err);
-      }
-    };
+  // listens to location state change
+  useEffect(() => {
     fetchWeather();
   }, [location]);
-
-  console.log(weather);
 
   return (
     <div className='fx-col'>
