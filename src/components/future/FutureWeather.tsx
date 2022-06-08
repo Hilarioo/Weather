@@ -1,15 +1,16 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import FutureDate from "./FutureDate";
-// Interfaces
-import { Weather } from "../../api/interfaces";
+// Context
+import { WeatherContext } from "../../App";
 
 // Typechecking to make sure the data being received is valid
 type Props = {
   temp: string;
-  weather: Weather;
 };
 
-const FutureWeather: FC<Props> = ({ temp, weather }) => {
+const FutureWeather: FC<Props> = ({ temp }) => {
+  const weather = useContext(WeatherContext);
+
   return (
     <div className='c-future fx-row'>
       {/* Doesnt show the same day again */}

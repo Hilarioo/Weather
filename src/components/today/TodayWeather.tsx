@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 // Format Date
 import { format } from "fecha";
 // Icons
@@ -9,15 +9,18 @@ import { GrLocation } from "react-icons/gr";
 import { Weather } from "../../api/interfaces";
 // Child components
 import MoreDetails from "./TodayDetails";
+// Context
+import { WeatherContext } from "../../App";
 
 // Typechecking to make sure the data being received is valid
 type Props = {
   speed: string;
   temp: string;
-  weather: Weather;
 };
 
-const TodayWeather: FC<Props> = ({ speed, temp, weather }) => {
+const TodayWeather: FC<Props> = ({ speed, temp }) => {
+  const weather = useContext(WeatherContext);
+
   return (
     <div className='c-today'>
       {/* Heading showcasing location name and date */}
