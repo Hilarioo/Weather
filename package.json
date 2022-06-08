@@ -1,7 +1,10 @@
 {
   "name": "react-take-home-assignment",
   "license": "MIT",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "engines": {
+    "node": "17.4.0"
+  },
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.9.0",
