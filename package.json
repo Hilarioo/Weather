@@ -3,7 +3,7 @@
   "license": "MIT",
   "version": "0.1.0",
   "engines": {
-    "node": "17.4.0"
+    "node": "16.15.1"
   },
   "private": true,
   "dependencies": {
