@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 // Format Date
 import { format } from "fecha";
 // Icons
@@ -10,17 +10,22 @@ import { ReactComponent as SunRain } from "../../svg/SunRain.svg";
 import { ReactComponent as SunClouds } from "../../svg/SunClouds.svg";
 // Interfaces
 import { ForecastDay } from "../../api/interfaces";
+// Context
+import { TempContext } from "../../App";
 
 // Typechecking to make sure the data being received is valid
 type Props = {
   forecastday: ForecastDay;
-  temp: string;
 };
 
-const FutureDate: FC<Props> = ({ forecastday, temp }) => {
+const FutureDate: FC<Props> = ({ forecastday }) => {
+  // Choose svg to load based on weather keywords
   const cloud = ["cloudy", "overcast", "mist", "fog"];
   const rain = ["rain", "snow", "sleet", "drizzle", "ice"];
   const storm = ["thunder", "blizzard"];
+
+  // Context API
+  const temp = useContext(TempContext);
 
   const weatherImage = (): JSX.Element => {
     if (storm.some((word) => forecastday.day.condition.text.includes(word)))

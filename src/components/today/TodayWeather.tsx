@@ -5,21 +5,14 @@ import { format } from "fecha";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 import { GrLocation } from "react-icons/gr";
-// Interfaces
-import { Weather } from "../../api/interfaces";
 // Child components
 import MoreDetails from "./TodayDetails";
 // Context
-import { WeatherContext } from "../../App";
+import { WeatherContext, TempContext } from "../../App";
 
-// Typechecking to make sure the data being received is valid
-type Props = {
-  speed: string;
-  temp: string;
-};
-
-const TodayWeather: FC<Props> = ({ speed, temp }) => {
+const TodayWeather: FC = () => {
   const weather = useContext(WeatherContext);
+  const temp = useContext(TempContext);
 
   return (
     <div className='c-today'>
@@ -57,12 +50,7 @@ const TodayWeather: FC<Props> = ({ speed, temp }) => {
       </div>
 
       {/* Child component showing low temp, high temp, humidity, and wind speed */}
-      <MoreDetails
-        current={weather.current}
-        forecast={weather.forecast}
-        speed={speed}
-        temp={temp}
-      />
+      <MoreDetails />
     </div>
   );
 };

@@ -20,6 +20,7 @@ const temperatures = [
     label: "Fahrenheit (F)",
   },
 ];
+
 // Drop-down selection for wind speed
 const speeds = [
   {
@@ -52,7 +53,7 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
     setSpeed(event.target.value);
   };
 
-  const handleLocation = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLocation = (event: React.SyntheticEvent) => {
     event.preventDefault(); // prevent refresh
     setLocation(input);
     setInput("");
@@ -63,7 +64,7 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
       {/* Search Bar */}
       <Paper
         component='form'
-        onSubmit={(e: any) => handleLocation(e)}
+        onSubmit={(e: React.SyntheticEvent) => handleLocation(e)}
         sx={{
           m: 1,
           p: "2px 4px",

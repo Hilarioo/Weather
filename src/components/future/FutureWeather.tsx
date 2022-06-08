@@ -3,20 +3,15 @@ import FutureDate from "./FutureDate";
 // Context
 import { WeatherContext } from "../../App";
 
-// Typechecking to make sure the data being received is valid
-type Props = {
-  temp: string;
-};
-
-const FutureWeather: FC<Props> = ({ temp }) => {
+const FutureWeather: FC = () => {
   const weather = useContext(WeatherContext);
 
   return (
     <div className='c-future fx-row'>
-      {/* Doesnt show the same day again */}
+      {/* skip the current day */}
       {weather.forecast.forecastday.map((forecastday, index) =>
         index !== 0 ? (
-          <FutureDate key={index} forecastday={forecastday} temp={temp} />
+          <FutureDate key={index} forecastday={forecastday} />
         ) : null
       )}
     </div>

@@ -1,19 +1,15 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
-// Interfaces
-import { CurrentWeather, Forecast } from "../../api/interfaces";
+// Context
+import { WeatherContext, SpeedContext, TempContext } from "../../App";
 
-// Typechecking to make sure the data being received is valid
-type Props = {
-  current: CurrentWeather;
-  forecast: Forecast;
-  speed: string;
-  temp: string;
-};
+const TodayDetails: FC = () => {
+  const weather = useContext(WeatherContext);
+  const speed = useContext(SpeedContext);
+  const temp = useContext(TempContext);
 
-const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
   return (
     <div className='today-details fx-row'>
       {/* Low Temp */}
@@ -21,8 +17,8 @@ const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
         <div className='num-unit fx-row'>
           <p className='num'>
             {temp === "f"
-              ? forecast.forecastday[0].day.mintemp_f
-              : forecast.forecastday[0].day.mintemp_c}
+              ? weather.forecast.forecastday[0].day.mintemp_f
+              : weather.forecast.forecastday[0].day.mintemp_c}
           </p>
           <span className='unit'>
             {temp === "f" ? (
@@ -40,8 +36,8 @@ const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
         <div className='num-unit fx-row'>
           <p className='num'>
             {temp === "f"
-              ? forecast.forecastday[0].day.maxtemp_f
-              : forecast.forecastday[0].day.maxtemp_c}
+              ? weather.forecast.forecastday[0].day.maxtemp_f
+              : weather.forecast.forecastday[0].day.maxtemp_c}
           </p>
           <span className='unit'>
             {temp === "f" ? (
@@ -57,7 +53,7 @@ const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
       {/* Humidity */}
       <div className='humidity fx-col'>
         <div className='num-unit fx-row'>
-          <p className='num'>{current.humidity}</p>
+          <p className='num'>{weather.current.humidity}</p>
           <span className='unit'>%</span>
         </div>
         <span className='text'>Humidity</span>
@@ -67,7 +63,9 @@ const TodayDetails: FC<Props> = ({ current, forecast, speed, temp }) => {
       <div className='wind fx-col'>
         <div className='num-unit fx-row'>
           <p className='num'>
-            {speed === "mph" ? current.wind_mph : current.wind_kph}
+            {speed === "mph"
+              ? weather.current.wind_mph
+              : weather.current.wind_kph}
           </p>
           <span className='unit'>{speed === "mph" ? "mph" : "km/h"}</span>
         </div>

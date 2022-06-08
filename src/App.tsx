@@ -15,7 +15,6 @@ import CircularProgress from "@mui/material/CircularProgress";
 export const WeatherContext = React.createContext<Weather>({} as Weather);
 export const TempContext = React.createContext<string>("");
 export const SpeedContext = React.createContext<string>("");
-export const LocationContext = React.createContext<string>("");
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
@@ -77,7 +76,11 @@ const App: FC = () => {
           <CircularProgress />
         ) : (
           <WeatherContext.Provider value={weather}>
-            <Today speed={speed} temp={temp} />
+            <TempContext.Provider value={temp}>
+              <SpeedContext.Provider value={speed}>
+                <Today />
+              </SpeedContext.Provider>
+            </TempContext.Provider>
           </WeatherContext.Provider>
         )}
 
@@ -85,7 +88,9 @@ const App: FC = () => {
           <CircularProgress />
         ) : (
           <WeatherContext.Provider value={weather}>
-            <Future temp={temp} />
+            <TempContext.Provider value={temp}>
+              <Future />
+            </TempContext.Provider>
           </WeatherContext.Provider>
         )}
       </div>
