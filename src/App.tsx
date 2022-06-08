@@ -20,7 +20,8 @@ const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
   const [temp, setTemp] = useState<string>("f");
   const [speed, setSpeed] = useState<string>("mph");
-  const [location, setLocation] = useState<string>();
+  // if user's IP address fails. Default is set to San Francisco
+  const [location, setLocation] = useState<string>("San Francisco");
 
   // Fetch user's IP address
   const fetchIP = () => {
