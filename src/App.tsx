@@ -23,31 +23,31 @@ const App: FC = () => {
   const [location, setLocation] = useState<string>();
 
   // Fetch user's IP address
-  const fetchIP = async () => {
-    try {
-      // get data from geolocation API
-      await axios.get(requests.fetchUserIP).then((res) => {
+  const fetchIP = () => {
+    // get data from geolocation API
+    axios
+      .get(requests.fetchUserIP)
+      .then((res) => {
         setLocation(res.data.IPv4);
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    } catch (err) {
-      console.log(err);
-    }
   };
 
   // Fetch new weather info
-  const fetchWeather = async () => {
-    try {
-      await axios
-        .get(
-          // Free Tier only allows 3-days MAX so thats why its hardcoded
-          `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
-        )
-        .then((res) => {
-          setWeather(res.data);
-        });
-    } catch (err) {
-      console.log(err);
-    }
+  const fetchWeather = () => {
+    axios
+      .get(
+        // Free Tier only allows 3-days MAX so thats why its hardcoded
+        `${requests.fetchForecast}&q=${location}&days=${3}&aqi=no&alerts=no`
+      )
+      .then((res) => {
+        setWeather(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   // init
