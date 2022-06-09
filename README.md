@@ -18,7 +18,7 @@ I LOVE feedback, so please let me know how I could improve my coding skills and 
 
 ### Local Install
 
-First, create an account with WeatherAPI and replace ${process.env.REACT_APP_API_KEY} with your own API
+First, create an account with WeatherAPI and replace ${process.env.REACT_APP_API_KEY} with your own API Key
 
 ```bash
 # open terminal
