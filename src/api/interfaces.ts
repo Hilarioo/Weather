@@ -30,7 +30,7 @@ interface Day {
 }
 
 export interface ForecastDay {
-  date: string;
+  date_epoch: number;
   day: Day;
 }
 

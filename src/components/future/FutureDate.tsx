@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 // Format Date
-import { format } from "fecha";
+import { format } from "date-fns";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
@@ -64,13 +64,10 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
 
       <div className='future-info'>
         <p className='day'>
-          {format(new Date(forecastday.date.replace(/-/g, "/")), "dddd")}
+          {format(new Date(forecastday.date_epoch * 1000), "EEEE")}
         </p>
         <p className='date'>
-          {format(
-            new Date(forecastday.date.replace(/-/g, "/")),
-            "MMMM Do, YYYY"
-          )}
+          {format(new Date(forecastday.date_epoch * 1000), "MMMM do, yyyy")}
         </p>
       </div>
     </div>

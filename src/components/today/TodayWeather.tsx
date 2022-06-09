@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 // Format Date
-import { format } from "fecha";
+import { format } from "date-fns";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
@@ -24,10 +24,13 @@ const TodayWeather: FC = () => {
         </div>
         <div className='today-info fx-col'>
           <p className='day'>
-            {format(new Date(weather.location.localtime), "dddd")}
+            {format(new Date(weather.location.localtime_epoch * 1000), "EEEE")}
           </p>
           <p className='date'>
-            {format(new Date(weather.location.localtime), "MMMM Do, YYYY")}
+            {format(
+              new Date(weather.location.localtime_epoch * 1000),
+              "MMMM do, yyyy"
+            )}
           </p>
         </div>
       </div>
