@@ -1,11 +1,12 @@
 # Weather App
 
-I created a responsive web app that allows users to see the current and future weather provided by the [WeatherAPI](/www.weatherapi.com/docs/). I also used a [Geo Location API](https://geolocation-db.com/json/) to initiate what users first see. It obtains a user's IP address to showcase nearby weather. This project was created using React, Typescript, Context API, Axios, Fetcha, NodeJS, and MaterialUI. This is my first project, where I also integrated unit tests using Jest. 
+I created a responsive web app that allows users to see the current and future weather provided by the [WeatherAPI](/www.weatherapi.com/docs/). I also used a [Geo Location API](https://geolocation-db.com/json/) to initiate what users first see. It obtains a user's IP address to showcase nearby weather. This project was created using React, Typescript, Context API, Axios, Date-fns, NodeJS, and MaterialUI. This is my first project, where I also integrated unit tests using Jest. 
 
 I LOVE feedback, so please let me know how I could improve my coding skills and become a better programmer!
 
 
 ### LIVE Demo
+The UI is responsive. Try it on a desktop, tablet, or mobile device
 [https://weather-verint.herokuapp.com/](https://weather-verint.herokuapp.com/)
 
 ### Showcasing Project
