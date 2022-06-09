@@ -6,8 +6,8 @@ I LOVE feedback, so please let me know how I could improve my coding skills and 
 
 
 ### LIVE Demo
-The UI is responsive. Try it on a desktop, tablet, or mobile device 
-
+<br />
+<sub><sup>The UI is responsive. Try it on a desktop, tablet, or mobile device </sup></sub>
 [https://weather-verint.herokuapp.com/](https://weather-verint.herokuapp.com/)
 
 ### Showcasing Project
