@@ -70,7 +70,7 @@ body {
     background-color: var(--container-color);
     border-radius: 0.5rem;
     padding: 1rem 1rem 2rem 1rem;
-    width: 28rem;
+    max-width: 28rem;
     margin: 0 auto;
 }
 
@@ -91,13 +91,16 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 5rem auto;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .select {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    width: 26rem;
+    /* width: 26rem; */
     margin-top: 1rem;
 }
 
@@ -153,7 +156,7 @@ body {
 .today-details {
     background-color: var(--first-color);
     border-radius: 1rem;
-    padding: 1rem;
+    flex-wrap: wrap;
     justify-content: space-evenly;
     filter: drop-shadow(0rem .2rem .2rem rgba(57, 57, 57, .4))
 }
@@ -167,7 +170,7 @@ body {
 .h-temp,
 .humidity,
 .wind {
-    margin: 0 1rem;
+    margin: .8rem;
     color: var(--text-color-light);
     text-align: center;
 }
@@ -196,7 +199,7 @@ body {
 }
 
 .future-details .num-unit {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
 }
 
@@ -233,6 +236,19 @@ body {
     font-weight: var(--font-semi-bold);
 }
 
+
+
+@media screen and (min-width: 375px) {
+    .select {
+        flex-direction: row;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .search {
+        margin: 3rem auto;
+    }
+}
 
 @media screen and (min-width: 900px) {
 

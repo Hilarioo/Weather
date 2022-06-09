@@ -70,7 +70,8 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
           p: "2px 4px",
           display: "flex",
           alignItems: "center",
-          width: 400,
+          width: "90%",
+          maxWidth: 400,
           height: 50,
         }}>
         <InputBase
@@ -85,12 +86,12 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
         </IconButton>
       </Paper>
 
-      <div className='select fx-row'>
+      <div className='select'>
         {/* Select Temperature*/}
         <Box
           component='form'
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "20ch" },
+            "& .MuiTextField-root": { m: 1 },
           }}
           noValidate
           autoComplete='off'>
@@ -115,7 +116,7 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
         <Box
           component='form'
           sx={{
-            "& .MuiTextField-root": { m: 1, width: "23ch" },
+            "& .MuiTextField-root": { m: 1 },
           }}
           noValidate
           autoComplete='off'>
