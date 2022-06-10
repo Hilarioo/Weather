@@ -11,7 +11,7 @@ const TodayDetails: FC = () => {
   const temp = useContext(TempContext);
 
   return (
-    <div className='today-details fx-row'>
+    <div className='today-details fx-row' data-testid='todayDetailsComponent'>
       {/* Low Temp */}
       <div className='l-temp fx-col'>
         <div className='num-unit fx-row'>

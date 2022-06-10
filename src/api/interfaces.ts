@@ -1,5 +1,5 @@
 // Structure for current weather object obtained from the WeatherAPI
-interface Condition {
+export interface Condition {
   text: string;
   code: number;
 }
@@ -18,7 +18,7 @@ export interface CurrentWeather {
 }
 
 // Structure for forecast object obtained from the WeatherAPI
-interface Day {
+export interface Day {
   avghumidity: number;
   condition: Condition;
   maxtemp_c: number;

@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useContext } from "react";
 // Material UI
 import Paper from "@mui/material/Paper";
 import Box from "@mui/material/Box";
@@ -8,6 +8,8 @@ import InputBase from "@mui/material/InputBase";
 import { BiSearchAlt } from "react-icons/bi";
 // Select
 import TextField from "@mui/material/TextField";
+// Context
+import { SpeedContext, TempContext } from "../../App";
 
 // Drop-down selection for temperatures
 const temperatures = [
@@ -28,22 +30,23 @@ const speeds = [
     label: "Miles (mph)",
   },
   {
-    value: "k",
+    value: "kmh",
     label: "Kilometers (km/h)",
   },
 ];
 
 // Typechecking the props for the component
 type Props = {
-  speed: string;
   setSpeed: (value: string) => void;
-  temp: string;
   setTemp: (value: string) => void;
   setLocation: (val: string) => void;
 };
 
-const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
+const Search: FC<Props> = ({ setSpeed, setTemp, setLocation }) => {
   const [input, setInput] = useState("");
+
+  const speed = useContext(SpeedContext);
+  const temp = useContext(TempContext);
 
   const handleTemp = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTemp(event.target.value);
@@ -80,6 +83,7 @@ const Search: FC<Props> = ({ speed, setSpeed, temp, setTemp, setLocation }) => {
           value={input}
           inputProps={{ "aria-label": "search for a city..." }}
           onChange={(e) => setInput(e.target.value)}
+          data-testid='searchInput'
         />
         <IconButton sx={{ p: "10px" }} aria-label='search' type='submit'>
           <BiSearchAlt />

@@ -27,16 +27,14 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
   // Context API
   const temp = useContext(TempContext);
 
-  const weatherImage = (): JSX.Element => {
-    if (storm.some((word) => forecastday.day.condition.text.includes(word)))
-      return <RainStorm height={85} />;
-    else if (rain.some((word) => forecastday.day.condition.text.includes(word)))
-      return <SunRain height={85} />;
-    else if (
-      cloud.some((word) => forecastday.day.condition.text.includes(word))
-    )
-      return <SunClouds height={85} />;
-    else return <Sun height={85} />;
+  const weatherImage = (forecast: string): JSX.Element => {
+    if (storm.some((word) => forecast.includes(word)))
+      return <RainStorm height={85} title='storm' />;
+    else if (rain.some((word) => forecast.includes(word)))
+      return <SunRain height={85} title='rain' />;
+    else if (cloud.some((word) => forecast.includes(word)))
+      return <SunClouds height={85} title='clouds' />;
+    else return <Sun height={85} title='sun' />;
   };
 
   return (
@@ -56,9 +54,8 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
       </div>
 
       {/* Svg and forecast */}
-      <div className='future-forecast fx-col'>
-        {weatherImage()}
-        {/* <Sun height={85} /> */}
+      <div className='future-forecast fx-col' data-testid='f-forecast'>
+        {weatherImage(forecastday.day.condition.text)}
         <p>{forecastday.day.condition.text}</p>
       </div>
 

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useMemo } from "react";
 // API helpers
 import axios from "./api/axios";
 import requests from "./api/requests";
@@ -13,8 +13,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 // Context API
 export const WeatherContext = React.createContext<Weather>({} as Weather);
-export const TempContext = React.createContext<string>("");
-export const SpeedContext = React.createContext<string>("");
+export const TempContext = React.createContext<string>("f");
+export const SpeedContext = React.createContext<string>("mph");
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
@@ -64,13 +64,15 @@ const App: FC = () => {
 
   return (
     <div className='fx-col'>
-      <Search
-        speed={speed}
-        setSpeed={setSpeed}
-        temp={temp}
-        setTemp={setTemp}
-        setLocation={setLocation}
-      />
+      <TempContext.Provider value={temp}>
+        <SpeedContext.Provider value={speed}>
+          <Search
+            setSpeed={setSpeed}
+            setTemp={setTemp}
+            setLocation={setLocation}
+          />
+        </SpeedContext.Provider>
+      </TempContext.Provider>
 
       <div className='c-temp'>
         {weather === undefined ? (
