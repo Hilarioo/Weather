@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import FutureDate from "./FutureDate";
 // Context
-import { WeatherContext } from "../../App";
+import { WeatherContext } from "../../context/appContext";
 
 const FutureWeather: FC = () => {
   const weather = useContext(WeatherContext);

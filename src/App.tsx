@@ -4,17 +4,16 @@ import axios from "./api/axios";
 import requests from "./api/requests";
 // Interfaces
 import { Weather } from "./api/interfaces";
+// Context
+import { WeatherContext } from "./context/appContext";
+// Context
+import { TempProvider, SpeedProvider } from "./context/appContext";
 // Import components
 import Search from "./components/search/Search";
 import Today from "./components/today/TodayWeather";
 import Future from "./components/future/FutureWeather";
 // Materiaul UI
 import CircularProgress from "@mui/material/CircularProgress";
-
-// Context API
-export const WeatherContext = React.createContext<Weather>({} as Weather);
-export const TempContext = React.createContext<string>("f");
-export const SpeedContext = React.createContext<string>("mph");
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
@@ -64,26 +63,22 @@ const App: FC = () => {
 
   return (
     <div className='fx-col'>
-      <TempContext.Provider value={temp}>
-        <SpeedContext.Provider value={speed}>
-          <Search
-            setSpeed={setSpeed}
-            setTemp={setTemp}
-            setLocation={setLocation}
-          />
-        </SpeedContext.Provider>
-      </TempContext.Provider>
+      <TempProvider>
+        <SpeedProvider>
+          <Search setLocation={setLocation} />
+        </SpeedProvider>
+      </TempProvider>
 
       <div className='c-temp'>
         {weather === undefined ? (
           <CircularProgress />
         ) : (
           <WeatherContext.Provider value={weather}>
-            <TempContext.Provider value={temp}>
-              <SpeedContext.Provider value={speed}>
+            <TempProvider>
+              <SpeedProvider>
                 <Today />
-              </SpeedContext.Provider>
-            </TempContext.Provider>
+              </SpeedProvider>
+            </TempProvider>
           </WeatherContext.Provider>
         )}
 
@@ -91,9 +86,9 @@ const App: FC = () => {
           <CircularProgress />
         ) : (
           <WeatherContext.Provider value={weather}>
-            <TempContext.Provider value={temp}>
+            <TempProvider>
               <Future />
-            </TempContext.Provider>
+            </TempProvider>
           </WeatherContext.Provider>
         )}
       </div>

@@ -11,7 +11,7 @@ import { ReactComponent as SunClouds } from "../../svg/SunClouds.svg";
 // Interfaces
 import { ForecastDay } from "../../api/interfaces";
 // Context
-import { TempContext } from "../../App";
+import { useTemp } from "../../context/appContext";
 
 // Typechecking to make sure the data being received is valid
 type Props = {
@@ -25,7 +25,7 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
   const storm = ["thunder", "blizzard"];
 
   // Context API
-  const temp = useContext(TempContext);
+  const { temp } = useTemp();
 
   const weatherImage = (forecast: string): JSX.Element => {
     if (storm.some((word) => forecast.includes(word)))

@@ -8,11 +8,11 @@ import { GrLocation } from "react-icons/gr";
 // Child components
 import MoreDetails from "./TodayDetails";
 // Context
-import { WeatherContext, TempContext } from "../../App";
+import { WeatherContext, useTemp } from "../../context/appContext";
 
 const TodayWeather: FC = () => {
   const weather = useContext(WeatherContext);
-  const temp = useContext(TempContext);
+  const { temp } = useTemp();
 
   return (
     <div className='c-today'>

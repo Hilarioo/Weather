@@ -9,7 +9,7 @@ import { BiSearchAlt } from "react-icons/bi";
 // Select
 import TextField from "@mui/material/TextField";
 // Context
-import { SpeedContext, TempContext } from "../../App";
+import { useTemp, useSpeed } from "../../context/appContext";
 
 // Drop-down selection for temperatures
 const temperatures = [
@@ -30,31 +30,21 @@ const speeds = [
     label: "Miles (mph)",
   },
   {
-    value: "kmh",
+    value: "k",
     label: "Kilometers (km/h)",
   },
 ];
 
 // Typechecking the props for the component
 type Props = {
-  setSpeed: (value: string) => void;
-  setTemp: (value: string) => void;
   setLocation: (val: string) => void;
 };
 
-const Search: FC<Props> = ({ setSpeed, setTemp, setLocation }) => {
+const Search: FC<Props> = ({ setLocation }) => {
   const [input, setInput] = useState("");
 
-  const speed = useContext(SpeedContext);
-  const temp = useContext(TempContext);
-
-  const handleTemp = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTemp(event.target.value);
-  };
-
-  const handleSpeed = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpeed(event.target.value);
-  };
+  const { speed, handleSpeed } = useSpeed();
+  const { temp, handleTemp } = useTemp();
 
   const handleLocation = (event: React.SyntheticEvent) => {
     event.preventDefault(); // prevent refresh

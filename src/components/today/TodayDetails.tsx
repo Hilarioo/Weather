@@ -3,12 +3,12 @@ import React, { FC, useContext } from "react";
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
 // Context
-import { WeatherContext, SpeedContext, TempContext } from "../../App";
+import { WeatherContext, useTemp, useSpeed } from "../../context/appContext";
 
 const TodayDetails: FC = () => {
   const weather = useContext(WeatherContext);
-  const speed = useContext(SpeedContext);
-  const temp = useContext(TempContext);
+  const { speed } = useSpeed();
+  const { temp } = useTemp();
 
   return (
     <div className='today-details fx-row' data-testid='todayDetailsComponent'>
