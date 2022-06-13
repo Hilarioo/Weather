@@ -4,14 +4,14 @@ import { Weather } from "../api/interfaces";
 
 const speedState = {
   speed: "",
-  handleSpeed: (event: React.ChangeEvent<HTMLInputElement>) => {
+  setSpeed: (newSpeed: string): void => {
     /**/
   },
 };
 
 const tempState = {
   temp: "",
-  handleTemp: (event: React.ChangeEvent<HTMLInputElement>) => {
+  setTemp: (newTemp: string): void => {
     /**/
   },
 };
@@ -26,47 +26,19 @@ type Props = {
 };
 
 export const TempProvider: FC<Props> = ({ children }) => {
-  // value given to context
   const [temp, setTemp] = useState<string>("f");
 
-  const handleTemp = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTemp(event.target.value);
-  };
-
   return (
-    <TempContext.Provider value={{ temp, handleTemp }}>
+    <TempContext.Provider value={{ temp, setTemp }}>
       {children}
     </TempContext.Provider>
   );
 };
 
 export const useTemp = () => {
-  const { temp, handleTemp } = useContext(TempContext);
+  const { temp, setTemp } = useContext(TempContext);
   if (temp === undefined) {
-    throw new Error("useCount must be used within a CountProvider");
+    throw new Error("useTemp must be used within a TempProvider");
   }
-  return { temp, handleTemp };
-};
-
-export const SpeedProvider: FC<Props> = ({ children }) => {
-  // value given to context
-  const [speed, setSpeed] = useState<string>("f");
-
-  const handleSpeed = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSpeed(event.target.value);
-  };
-
-  return (
-    <SpeedContext.Provider value={{ speed, handleSpeed }}>
-      {children}
-    </SpeedContext.Provider>
-  );
-};
-
-export const useSpeed = () => {
-  const { speed, handleSpeed } = useContext(SpeedContext);
-  if (speed === undefined) {
-    throw new Error("useCount must be used within a CountProvider");
-  }
-  return { speed, handleSpeed };
+  return { temp, setTemp };
 };

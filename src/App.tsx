@@ -1,13 +1,15 @@
-import React, { FC, useState, useEffect, useMemo } from "react";
+import React, { FC, useState, useEffect } from "react";
 // API helpers
 import axios from "./api/axios";
 import requests from "./api/requests";
 // Interfaces
 import { Weather } from "./api/interfaces";
 // Context
-import { WeatherContext } from "./context/appContext";
-// Context
-import { TempProvider, SpeedProvider } from "./context/appContext";
+import {
+  WeatherContext,
+  SpeedContext,
+  TempProvider,
+} from "./context/appContext";
 // Import components
 import Search from "./components/search/Search";
 import Today from "./components/today/TodayWeather";
@@ -17,9 +19,8 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 const App: FC = () => {
   const [weather, setWeather] = useState<Weather>();
-  const [temp, setTemp] = useState<string>("f");
   const [speed, setSpeed] = useState<string>("mph");
-  // if user's IP address fails. Default is set to San Francisco
+  // Default is set to San Francisco
   const [location, setLocation] = useState<string>("San Francisco");
 
   // Fetch user's IP address
@@ -64,34 +65,30 @@ const App: FC = () => {
   return (
     <div className='fx-col'>
       <TempProvider>
-        <SpeedProvider>
+        <SpeedContext.Provider value={{ speed, setSpeed }}>
           <Search setLocation={setLocation} />
-        </SpeedProvider>
-      </TempProvider>
+        </SpeedContext.Provider>
 
-      <div className='c-temp'>
-        {weather === undefined ? (
-          <CircularProgress />
-        ) : (
-          <WeatherContext.Provider value={weather}>
-            <TempProvider>
-              <SpeedProvider>
+        <div className='c-temp'>
+          {weather === undefined ? (
+            <CircularProgress />
+          ) : (
+            <WeatherContext.Provider value={weather}>
+              <SpeedContext.Provider value={{ speed, setSpeed }}>
                 <Today />
-              </SpeedProvider>
-            </TempProvider>
-          </WeatherContext.Provider>
-        )}
+              </SpeedContext.Provider>
+            </WeatherContext.Provider>
+          )}
 
-        {weather === undefined ? (
-          <CircularProgress />
-        ) : (
-          <WeatherContext.Provider value={weather}>
-            <TempProvider>
+          {weather === undefined ? (
+            <CircularProgress />
+          ) : (
+            <WeatherContext.Provider value={weather}>
               <Future />
-            </TempProvider>
-          </WeatherContext.Provider>
-        )}
-      </div>
+            </WeatherContext.Provider>
+          )}
+        </div>
+      </TempProvider>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import { BiSearchAlt } from "react-icons/bi";
 // Select
 import TextField from "@mui/material/TextField";
 // Context
-import { useTemp, useSpeed } from "../../context/appContext";
+import { SpeedContext, useTemp } from "../../context/appContext";
 
 // Drop-down selection for temperatures
 const temperatures = [
@@ -43,8 +43,8 @@ type Props = {
 const Search: FC<Props> = ({ setLocation }) => {
   const [input, setInput] = useState("");
 
-  const { speed, handleSpeed } = useSpeed();
-  const { temp, handleTemp } = useTemp();
+  const { speed, setSpeed } = useContext(SpeedContext);
+  const { temp, setTemp } = useTemp();
 
   const handleLocation = (event: React.SyntheticEvent) => {
     event.preventDefault(); // prevent refresh
@@ -94,7 +94,7 @@ const Search: FC<Props> = ({ setLocation }) => {
             select
             label='Temperature Unit'
             value={temp}
-            onChange={handleTemp}
+            onChange={(e) => setTemp(e.target.value)}
             SelectProps={{
               native: true,
             }}>
@@ -119,7 +119,7 @@ const Search: FC<Props> = ({ setLocation }) => {
             select
             label='Speed Unit'
             value={speed}
-            onChange={handleSpeed}
+            onChange={(e) => setSpeed(e.target.value)}
             SelectProps={{
               native: true,
             }}>
