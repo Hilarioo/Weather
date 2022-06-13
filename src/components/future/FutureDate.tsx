@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 // Format Date
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 // Icons
 import { TbTemperatureCelsius } from "react-icons/tb";
 import { TbTemperatureFahrenheit } from "react-icons/tb";
@@ -19,7 +19,6 @@ type Props = {
 };
 
 const FutureDate: FC<Props> = ({ forecastday }) => {
-  // Choose svg to load based on weather keywords
   const cloud = ["cloudy", "overcast", "mist", "fog"];
   const rain = ["rain", "snow", "sleet", "drizzle", "ice"];
   const storm = ["thunder", "blizzard"];
@@ -27,6 +26,7 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
   // Context API
   const { temp } = useTemp();
 
+  // Choose svg to load based on weather keywords
   const weatherImage = (forecast: string): JSX.Element => {
     if (storm.some((word) => forecast.includes(word)))
       return <RainStorm height={85} title='storm' />;
@@ -35,6 +35,13 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
     else if (cloud.some((word) => forecast.includes(word)))
       return <SunClouds height={85} title='clouds' />;
     else return <Sun height={85} title='sun' />;
+  };
+
+  // Fix date bug. WeatherAPI sends incorrect epoch date within forecast
+  // solution: add an extra day
+  const newDate = (): Date => {
+    const d: Date = new Date(forecastday.date_epoch * 1000);
+    return addDays(d, 1);
   };
 
   return (
@@ -60,12 +67,8 @@ const FutureDate: FC<Props> = ({ forecastday }) => {
       </div>
 
       <div className='future-info'>
-        <p className='day'>
-          {format(new Date(forecastday.date_epoch * 1000), "EEEE")}
-        </p>
-        <p className='date'>
-          {format(new Date(forecastday.date_epoch * 1000), "MMMM do, yyyy")}
-        </p>
+        <p className='day'>{format(newDate(), "EEEE")}</p>
+        <p className='date'>{format(newDate(), "MMMM do, yyyy")}</p>
       </div>
     </div>
   );

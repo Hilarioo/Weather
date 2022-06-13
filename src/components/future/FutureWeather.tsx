@@ -6,6 +6,8 @@ import { WeatherContext } from "../../context/appContext";
 const FutureWeather: FC = () => {
   const weather = useContext(WeatherContext);
 
+  console.log(weather);
+
   return (
     <div className='c-future fx-row'>
       {/* skip the current day */}
